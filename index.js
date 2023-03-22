@@ -1,4 +1,4 @@
-require('dotenv').config()
+ require('dotenv').config()
 const express = require('express')
 const app = express()
 
@@ -9,11 +9,14 @@ app.use('/places', require('./controllers/places'))
 
 app.get('/', (req, res) => {
   res.render('home')
+  
 })
 
 app.get('*', (req, res) => {
-  res.status('404 page').render('error')
+  res.status(404).render('error404')
 })
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT, () => {
+  console.log('listening on port', process.env.PORT)
+})
 
